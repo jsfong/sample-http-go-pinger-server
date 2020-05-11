@@ -41,6 +41,8 @@ func main() {
 }
 
 func sendHTTPReq(client *http.Client, wg *sync.WaitGroup) {
+
+	defer wg.Done()
 	fmt.Println("sending...")
 
 	//Form url
@@ -62,7 +64,6 @@ func sendHTTPReq(client *http.Client, wg *sync.WaitGroup) {
 	defer resp.Body.Close()
 
 	fmt.Println(resp.StatusCode)
-	wg.Done()
 
 }
 
